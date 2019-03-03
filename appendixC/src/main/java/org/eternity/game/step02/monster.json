@@ -1,0 +1,6 @@
+{ "breeds" :
+  [
+    { "name" : "용" , "health" : 230, "attack" : "용은 불을 내뿜는다" },
+    { "name" : "트롤", "health" : 48, "attack" : "트롤은 곤봉으로 때린다" }
+  ]
+}
