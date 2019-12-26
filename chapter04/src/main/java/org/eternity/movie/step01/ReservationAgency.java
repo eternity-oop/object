@@ -39,7 +39,7 @@ public class ReservationAgency {
 
             fee = movie.getFee().minus(discountAmount).times(audienceCount);
         } else {
-            fee = movie.getFee();
+            fee = movie.getFee().times(audienceCount);
         }
 
         return new Reservation(customer, screening, fee, audienceCount);
