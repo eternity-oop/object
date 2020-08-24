@@ -9,6 +9,7 @@ public class RateDiscountableRegularPhone extends RegularPhone {
 
     public RateDiscountableRegularPhone(Money amount, Duration seconds, Money discountAmount) {
         super(amount, seconds);
+        this.discountAmount = discountAmount;
     }
 
     @Override
