@@ -15,7 +15,7 @@ public class FeePerDuration {
     }
 
     public Money calculate(DateTimeInterval interval) {
-        return fee.times(interval.duration().getSeconds() / duration.getSeconds());
+        return fee.times(Math.ceil((double)interval.duration().toNanos() / duration.toNanos()));
     }
 }
 
