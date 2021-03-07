@@ -20,7 +20,8 @@ public class DateTimeInterval {
     }
 
     public static DateTimeInterval during(LocalDate date) {
-        return new DateTimeInterval(LocalDateTime.of(date, LocalTime.of(0, 0)),
+        return new DateTimeInterval(
+                LocalDateTime.of(date, LocalTime.of(0, 0)),
                 LocalDateTime.of(date, LocalTime.of(23, 59, 59)));
     }
 
@@ -49,11 +50,11 @@ public class DateTimeInterval {
         return Arrays.asList(this);
     }
 
-    private int days() {
-        return Period.between(from.toLocalDate(), to.toLocalDate()).plusDays(1).getDays();
+    private long days() {
+        return Duration.between(from.toLocalDate().atStartOfDay(), to.toLocalDate().atStartOfDay()).toDays();
     }
 
-    private List<DateTimeInterval> split(int days) {
+    private List<DateTimeInterval> split(long days) {
         List<DateTimeInterval> result = new ArrayList<>();
         addFirstDay(result);
         addMiddleDays(result, days);
@@ -65,7 +66,7 @@ public class DateTimeInterval {
         result.add(DateTimeInterval.toMidnight(from));
     }
 
-    private void addMiddleDays(List<DateTimeInterval> result, int days) {
+    private void addMiddleDays(List<DateTimeInterval> result, long days) {
         for(int loop=1; loop < days; loop++) {
             result.add(DateTimeInterval.during(from.toLocalDate().plusDays(loop)));
         }
