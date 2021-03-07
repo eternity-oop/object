@@ -20,8 +20,8 @@ public class TimeOfDayFeeCondition implements FeeCondition {
     public List<DateTimeInterval> findTimeIntervals(Call call) {
         return call.getInterval().splitByDay()
                 .stream()
-                .map(each ->
-                        DateTimeInterval.of(
+                .filter(each -> from(each).isBefore(to(each)))
+                .map(each -> DateTimeInterval.of(
                                 LocalDateTime.of(each.getFrom().toLocalDate(), from(each)),
                                 LocalDateTime.of(each.getTo().toLocalDate(), to(each))))
                 .collect(Collectors.toList());

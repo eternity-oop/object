@@ -25,7 +25,6 @@ public final class BasicRatePolicy implements RatePolicy {
         return feeRules
                 .stream()
                 .map(rule -> rule.calculateFee(call))
-                .reduce(Money.ZERO,
-                        (first, second) -> second.isGreaterThanOrEqual(Money.ZERO) ? first.plus(second) : first);
+                .reduce(Money.ZERO, (first, second) -> first.plus(second));
     }
 }
