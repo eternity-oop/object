@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 //dependencies assertj-core RELEASE add in pom.xml
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PhoneTest {
+class RegularPhoneTest {
 
     @Test
     void forNoMoneyPhone() {
@@ -15,10 +15,10 @@ class PhoneTest {
         LocalDateTime then = LocalDateTime.of(2021,7,26,20,40);
         LocalDateTime now = LocalDateTime.now();
         Duration duration = Duration.between(then, now);
-        Phone phone = new Phone(Money.wons(0), duration);
-        assertThat(phone.calculateFee()).isEqualTo(Money.ZERO);
-//        phone.call(new PhoneCall(then,now));
-//        assertThat(phone.calculateFee()).isEqualTo(Money.ZERO);
+        RegularPhone regularPhone = new RegularPhone(Money.wons(0), duration);
+        assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
+//        regularPhone.call(new PhoneCall(then,now));
+//        assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
     }
 
     @Test
@@ -29,11 +29,11 @@ class PhoneTest {
         LocalDateTime start = LocalDateTime.of(2021,7,26,20,40, 10);
 
         Duration duration = Duration.between(start,to);
-        Phone phone = new Phone(Money.wons(3000), duration);
-        assertThat(phone.calculateFee()).isEqualTo(Money.ZERO);
-//        phone.call(new PhoneCall(from,to));
-//        phone.call(new PhoneCall(from,to));
-//        phone.call(new PhoneCall(from,to));
-//        assertThat(phone.calculateFee()).isEqualTo(Money.wons(9000));
+        RegularPhone regularPhone = new RegularPhone(Money.wons(3000), duration);
+        assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
+//        regularPhone.call(new PhoneCall(from,to));
+//        regularPhone.call(new PhoneCall(from,to));
+//        regularPhone.call(new PhoneCall(from,to));
+//        assertThat(regularPhone.calculateFee()).isEqualTo(Money.wons(9000));
     }
 }

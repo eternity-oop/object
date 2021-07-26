@@ -6,9 +6,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class NightPhoneTest {
+class NightDiscountPhoneTest {
 
     @Test
     void forMoney3000NightPhone() {
@@ -18,12 +17,12 @@ class NightPhoneTest {
         LocalDateTime start = LocalDateTime.of(2021,7,26,23,40, 10);
 
         Duration duration = Duration.between(start,to);
-        NightPhone nightPhone = new NightPhone(Money.wons(1000), Money.wons(2000), duration);
-        assertThat(nightPhone.calculateFee()).isEqualTo(Money.ZERO);
-//        Phone phone = new Phone(Money.wons(3000), duration);
+        NightDiscountPhone nightDiscountPhone = new NightDiscountPhone(Money.wons(1000), Money.wons(2000), duration);
+        assertThat(nightDiscountPhone.calculateFee()).isEqualTo(Money.ZERO);
+//        RegularPhone phone = new RegularPhone(Money.wons(3000), duration);
 //        phone.call(new PhoneCall(from,to));
 //        phone.call(new PhoneCall(from,to));
 //        phone.call(new PhoneCall(from,to));
-//        assertThat(nightPhone.calculateFee()).isEqualTo(Money.wons(9000));
+//        assertThat(nightDiscountPhone.calculateFee()).isEqualTo(Money.wons(9000));
     }
 }

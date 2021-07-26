@@ -30,3 +30,14 @@ calls는 private인스턴스 변수 (어차피 공통 인스턴스 변수) 이�
 
 calculateCallFee는 Signature은 동일하나 내부 Implementation이 달라서 발생 
  => 추상 메서드 선언 & 자식 클래스 @Override protected 하도록 abstract protected 선언 
+
+## p340 추상화가 핵심이다
+공통 코드를 위로 이동시킨 후, 각 클래스는 서로 다른 변경의 이유를 가진다.
+AbstractPhone : 전체 통화 목록 계산 방법 바뀔 때 변경 
+Phone : 일반 요금제 통화 한 건 계산 방식 변경 시 변경 
+NightPhone : 심야 할인 요금제 통화 한 건 계산 방식 변경 시 변경 
+
+### Single Responsibility Principle
+### Dependency Inversion Principle 
+즉 새로운 요금제는 AbstractPhone extend & @Override calculateCallFee 
+### Open-Closed Principle

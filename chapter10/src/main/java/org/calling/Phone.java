@@ -1,26 +1,20 @@
 package org.calling;
 
-import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Phone extends AbstractPhone {
-    private Money amount;
-    private Duration seconds;
+public abstract class Phone {
+    private List<PhoneCall> calls = new ArrayList<>();
 
-    public Phone(Money amount, Duration seconds) {
-        this.amount = amount;
-        this.seconds = seconds;
+    public Money calculateFee() {
+        Money result = Money.ZERO;
+
+        for (PhoneCall call : calls) {
+            result = result.plus(calculateCallFee(call));
+        }
+
+        return result;
     }
 
-    public Money getAmount() {
-        return amount;
-    }
-
-    public Duration getSeconds() {
-        return seconds;
-    }
-
-    @Override
-    protected Money calculateCallFee(PhoneCall call) {
-        return amount.times(call.getDuration().getSeconds() / seconds.getSeconds());
-    }
+    protected abstract Money calculateCallFee(PhoneCall call);
 }
