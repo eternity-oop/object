@@ -41,3 +41,7 @@ NightPhone : 심야 할인 요금제 통화 한 건 계산 방식 변경 시 변
 ### Dependency Inversion Principle 
 즉 새로운 요금제는 AbstractPhone extend & @Override calculateCallFee 
 ### Open-Closed Principle
+
+## p341 세금 추가하기 (공통 수정사항)
+추상클래스 Phone에 taxRate인스턴스 변수 추가, 공통 calculateFee()에 for문 후 최후 taxRate() 부과
+인스터스 변수가 추가되었기에, 자식클래스의 초기화 로직 추가 필요

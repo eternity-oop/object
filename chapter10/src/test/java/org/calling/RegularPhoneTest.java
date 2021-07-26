@@ -15,7 +15,8 @@ class RegularPhoneTest {
         LocalDateTime then = LocalDateTime.of(2021,7,26,20,40);
         LocalDateTime now = LocalDateTime.now();
         Duration duration = Duration.between(then, now);
-        RegularPhone regularPhone = new RegularPhone(Money.wons(0), duration);
+        double taxRate = 10.0;
+        RegularPhone regularPhone = new RegularPhone(Money.wons(0), duration, taxRate);
         assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
 //        regularPhone.call(new PhoneCall(then,now));
 //        assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
@@ -29,7 +30,8 @@ class RegularPhoneTest {
         LocalDateTime start = LocalDateTime.of(2021,7,26,20,40, 10);
 
         Duration duration = Duration.between(start,to);
-        RegularPhone regularPhone = new RegularPhone(Money.wons(3000), duration);
+        double taxRate = 10.0;
+        RegularPhone regularPhone = new RegularPhone(Money.wons(3000), duration, taxRate);
         assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
 //        regularPhone.call(new PhoneCall(from,to));
 //        regularPhone.call(new PhoneCall(from,to));
