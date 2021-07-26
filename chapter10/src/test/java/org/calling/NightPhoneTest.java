@@ -20,6 +20,7 @@ class NightPhoneTest {
         Duration duration = Duration.between(start,to);
         NightPhone nightPhone = new NightPhone(Money.wons(1000), Money.wons(2000), duration);
         assertThat(nightPhone.calculateFee()).isEqualTo(Money.ZERO);
+//        Phone phone = new Phone(Money.wons(3000), duration);
 //        phone.call(new PhoneCall(from,to));
 //        phone.call(new PhoneCall(from,to));
 //        phone.call(new PhoneCall(from,to));
