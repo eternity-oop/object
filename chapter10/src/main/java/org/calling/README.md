@@ -82,3 +82,24 @@ class TaxableRegularPhone extends RegularPhone {
 
 
 ```
+### p36 기본 정책 합성하기 
+그러나 위와 같이 Rate>Tax>Regular, Rate>Tax>Night , Rate>Regular 등 클래스폭발 explosion 발생
+단일 상속의 어려움 대신, 합성하기 Phone에 의존하지 않는 Policy정책 인터페이스 분리 필요 
+
+RatePolicy Interface, Phone 인자로 받아 계산된 요금 calculateFee(Phone phone) 오퍼레이션
+기본 정책 > 일반요금 , 기본정책 > 심야할인요금 객체 구현 (기본정책 은 공통 요소 많으니 Abstract Class)
+
+```
+Class AnyPhone (NO MORE an Abstract Class)
+
+//RatePolicy switchable to subclasses, NO final
+    private RatePolicy ratePolicy;
+    private List<PhoneCall> calls = new ArrayList<>();
+
+    public AnyPhone(RatePolicy ratePolicy){
+        this.ratePolicy = ratePolicy;
+    }
+```
+Phone 내부에 RatePolicy에 대한 참조자가 포함. 다양한 요금정책과 협력 가능해야 해서 '인터페이스'나 '추상클래스' 선언
+생성자를 통해 RatePolicy의 Instance에 대한 의존성을 주입받아, Runtime 의존성으로 대체 
+Implements 가 아닌 아예 생성 시점에 참조! 

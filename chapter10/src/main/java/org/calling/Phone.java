@@ -16,6 +16,10 @@ public abstract class Phone {
         return result;
     }
 
+    public List<PhoneCall> getCalls() {
+        return calls;
+    }
+
     protected abstract Money calculateCallFee(PhoneCall call);
 
     protected Money afterCalculated(Money fee) {
