@@ -45,3 +45,40 @@ NightPhone : 심야 할인 요금제 통화 한 건 계산 방식 변경 시 변
 ## p341 세금 추가하기 (공통 수정사항)
 추상클래스 Phone에 taxRate인스턴스 변수 추가, 공통 calculateFee()에 for문 후 최후 taxRate() 부과
 인스터스 변수가 추가되었기에, 자식클래스의 초기화 로직 추가 필요
+
+# 합성과 유연한 설계 
+상속은 부모 / 자식 클래스의 의존성이 compile 타임에 해결되지만 
+합성은 run타임에 해결된다. 상속은 is-a관계(부모 코드 재사용)이고 합성은 has-a관계(부분 객체 코드 재사용)이다
+즉 상속은 부모의 내부구현을 상세히 알아야 하므로, 결합도가 높아진다. 객체 합성 >> 클래스 상속 
+즉 합성은 코드 자체가 아닌, 포함되는 객체의 public interface를 재사용한다. 낮은 결합도 달성 
+상속은 whitebox-reuse, 합성은 black-box reuse이다. 
+
+### p358 기본 정책에 세금 정책 조합하기
+기본 정책 (시간대 / 통화량) 아닌 부가 정책 (세금 / 약정 할인)은 적용할 수도, 안할 수도, 여러 개를/다른 순서로 조합 가능하다.
+NO 상속 (인스턴스 변수 taxRate을 부모한테 추가해서 자식까지 super(); 생성으로 영향미치는 것)
+YES 합성 (부모 클래스는 자신의 추상 메서드 호출, 자식은 이 메서드 @Override) 
+
+훅 Hook Method 편의상 기본 구현(abstract 제외 일반 메서드처럼 구현) 제공, 동일 구현이면 @Override불필요
+```
+//현재의 RegularPhone, NightDiscountPhone 모두 
+ 사후 부가세 없어서 어차피 fee 그대로 반환 예정 
+
+abstract class Phone {
+protected Money afterCalcualted(Money fee) {
+    return fee;
+}
+
+class RegularPhone { , class NightDiscountPhone { 
+Override불필요 
+
+class TaxableRegularPhone extends RegularPhone { 
+ 생성자 자체는 자신이 진행, 즉 Tax 포함 
+ @Override 
+ protected Money afterCalculated(Money fee) {
+    return fee.plus(fee.times(taxRate));
+ }
+}
+
+
+
+```

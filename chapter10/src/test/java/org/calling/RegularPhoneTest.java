@@ -9,18 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RegularPhoneTest {
 
-    @Test
-    void forNoMoneyPhone() {
-
-        LocalDateTime then = LocalDateTime.of(2021,7,26,20,40);
-        LocalDateTime now = LocalDateTime.now();
-        Duration duration = Duration.between(then, now);
-        double taxRate = 10.0;
-        RegularPhone regularPhone = new RegularPhone(Money.wons(0), duration, taxRate);
-        assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
-//        regularPhone.call(new PhoneCall(then,now));
-//        assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
-    }
 
     @Test
     void forMoney3000Phone() {
@@ -30,8 +18,7 @@ class RegularPhoneTest {
         LocalDateTime start = LocalDateTime.of(2021,7,26,20,40, 10);
 
         Duration duration = Duration.between(start,to);
-        double taxRate = 10.0;
-        RegularPhone regularPhone = new RegularPhone(Money.wons(3000), duration, taxRate);
+        RegularPhone regularPhone = new RegularPhone(Money.wons(3000), duration);
         assertThat(regularPhone.calculateFee()).isEqualTo(Money.ZERO);
 //        regularPhone.call(new PhoneCall(from,to));
 //        regularPhone.call(new PhoneCall(from,to));

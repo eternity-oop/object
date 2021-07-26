@@ -17,8 +17,8 @@ class NightDiscountPhoneTest {
         LocalDateTime start = LocalDateTime.of(2021,7,26,23,40, 10);
 
         Duration duration = Duration.between(start,to);
-        double taxRate = 10.0;
-        NightDiscountPhone nightDiscountPhone = new NightDiscountPhone(Money.wons(1000), Money.wons(2000), duration, taxRate);
+        NightDiscountPhone nightDiscountPhone = new NightDiscountPhone(Money.wons(1000), Money.wons(2000), duration);
+
         assertThat(nightDiscountPhone.calculateFee()).isEqualTo(Money.ZERO);
 //        RegularPhone phone = new RegularPhone(Money.wons(3000), duration);
 //        phone.call(new PhoneCall(from,to));
