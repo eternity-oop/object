@@ -20,3 +20,13 @@ OR
 result.plus(regularAmount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
 
 ```
+## p336 중복 코드를 부모 클래스로 올려라 
+추상 클래스로 구현, AbstractPhone을 Phone과 NightPhone이 상속받도록 하자
+완전 동일한 public 공통 코드 : calculateFee() 이동
+calls와 calculateCallFee메서드 컴파일 오류 발생
+
+calls는 private인스턴스 변수 (어차피 공통 인스턴스 변수) 이동
+=> 각 자식 클래스 : Phone의 PhoneCall, List<PhoneCall> 관련 메서드 삭제
+
+calculateCallFee는 Signature은 동일하나 내부 Implementation이 달라서 발생 
+ => 추상 메서드 선언 & 자식 클래스 @Override protected 하도록 abstract protected 선언 
