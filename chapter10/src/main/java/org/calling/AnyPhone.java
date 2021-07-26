@@ -18,8 +18,7 @@ public class AnyPhone {
      * unmodifiableList() ?
      */
     public List<PhoneCall> getCalls() {
-        return Collections.unmodifiableList(calls);
-    }
+        return Collections.unmodifiableList(calls);}
 
     /*
      * message to Policy

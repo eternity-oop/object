@@ -1,4 +1,7 @@
-package org.calling;
+package org.calling.inheritClass;
+
+import org.calling.Money;
+import org.calling.PhoneCall;
 
 import java.util.ArrayList;
 import java.util.List;

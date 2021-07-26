@@ -1,4 +1,6 @@
-package org.calling;
+package org.calling.inheritClass;
+
+import org.calling.Money;
 
 import java.time.Duration;
 //super() of NightDiscountPhone() 단일상속, Phone 무관
